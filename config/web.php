@@ -42,15 +42,27 @@ $config = [
                 ],
             ],
         ],
+        'twitter' => function() {
+            return new DG\Twitter\Twitter(
+                Yii::$app->params['twitter']['consumerKey'],
+                Yii::$app->params['twitter']['consumerSecret'],
+                Yii::$app->params['twitter']['accessToken'],
+                Yii::$app->params['twitter']['accessTokenSecret']
+            );
+        },
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/twitter' => 'twitter/default/index',
             ],
         ],
-        */
+    ],
+    'modules' => [
+        'twitter' => [
+            'class' => 'app\modules\twitter\TwitterModule',
+        ],
     ],
     'params' => $params,
 ];
